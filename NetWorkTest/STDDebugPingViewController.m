@@ -9,7 +9,7 @@
 #import "STDDebugPingViewController.h"
 #import "STDebugFoundation.h"
 #import "STDPingServices.h"
-#import "GetDeviceIPAddress.h"
+
 
 @interface STDDebugPingViewController ()
 
@@ -27,8 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *ipString = [GetDeviceIPAddress getDeviceIPIpAddresses];
-    NSLog(@"------%@",ipString);
+     
     
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"Ping网络";

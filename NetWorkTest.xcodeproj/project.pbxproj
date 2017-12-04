@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16774D421FD587B00065B5F5 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16774D411FD587B00065B5F5 /* ThirdViewController.m */; };
+		16774D4A1FD587FF0065B5F5 /* MXDownloadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16774D481FD587FF0065B5F5 /* MXDownloadModel.m */; };
+		16774D4B1FD587FF0065B5F5 /* MXDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 16774D491FD587FF0065B5F5 /* MXDownloadManager.m */; };
 		16B8D6F51FD4DB6100AF0720 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D6F41FD4DB6100AF0720 /* AppDelegate.m */; };
 		16B8D6F81FD4DB6100AF0720 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D6F71FD4DB6100AF0720 /* ViewController.m */; };
 		16B8D6FB1FD4DB6100AF0720 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16B8D6F91FD4DB6100AF0720 /* Main.storyboard */; };
@@ -22,7 +25,6 @@
 		16B8D7391FD4DB7500AF0720 /* LDNetGetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D72F1FD4DB7500AF0720 /* LDNetGetAddress.m */; };
 		16B8D73A1FD4DB7500AF0720 /* LDNetDiagnoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D7301FD4DB7500AF0720 /* LDNetDiagnoService.m */; };
 		16B8D73B1FD4DB7500AF0720 /* LDNetConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D7341FD4DB7500AF0720 /* LDNetConnect.m */; };
-		16B8D73F1FD4DBE800AF0720 /* libLDNetDiagnoService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B8D73E1FD4DBE800AF0720 /* libLDNetDiagnoService.framework */; };
 		16B8D7471FD4DC9D00AF0720 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B8D7411FD4DC0B00AF0720 /* CoreMotion.framework */; };
 		16B8D7481FD4DD8E00AF0720 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B8D7421FD4DC1100AF0720 /* libresolv.tbd */; };
 		16B8D7491FD4DD9200AF0720 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B8D7451FD4DC3D00AF0720 /* libresolv.9.tbd */; };
@@ -30,7 +32,6 @@
 		16B8D75C1FD5225300AF0720 /* STDPingServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D7541FD5225300AF0720 /* STDPingServices.m */; };
 		16B8D75D1FD5225300AF0720 /* STSimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D7571FD5225300AF0720 /* STSimplePing.m */; };
 		16B8D7601FD5282400AF0720 /* STDDebugPingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D75F1FD5282400AF0720 /* STDDebugPingViewController.m */; };
-		16B8D7641FD530F600AF0720 /* GetDeviceIPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D7631FD530F600AF0720 /* GetDeviceIPAddress.m */; };
 		B74E3911311C2F8E096664C9 /* libPods-NetWorkTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CDE3D0AA92C58E80CA273C /* libPods-NetWorkTest.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,13 @@
 
 /* Begin PBXFileReference section */
 		021D1F8DD54DDE8A82019594 /* Pods-NetWorkTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetWorkTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetWorkTest/Pods-NetWorkTest.debug.xcconfig"; sourceTree = "<group>"; };
+		16774D401FD587B00065B5F5 /* ThirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
+		16774D411FD587B00065B5F5 /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		16774D461FD587FF0065B5F5 /* MXDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXDownloadManager.h; sourceTree = "<group>"; };
+		16774D471FD587FF0065B5F5 /* MXDownloadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXDownloadModel.h; sourceTree = "<group>"; };
+		16774D481FD587FF0065B5F5 /* MXDownloadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXDownloadModel.m; sourceTree = "<group>"; };
+		16774D491FD587FF0065B5F5 /* MXDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXDownloadManager.m; sourceTree = "<group>"; };
+		16774D4C1FD58C2F0065B5F5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		16B8D6F01FD4DB6100AF0720 /* NetWorkTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetWorkTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16B8D6F31FD4DB6100AF0720 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		16B8D6F41FD4DB6100AF0720 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -85,7 +93,6 @@
 		16B8D7331FD4DB7500AF0720 /* LDNetPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDNetPing.h; sourceTree = "<group>"; };
 		16B8D7341FD4DB7500AF0720 /* LDNetConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDNetConnect.m; sourceTree = "<group>"; };
 		16B8D73D1FD4DB9800AF0720 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		16B8D73E1FD4DBE800AF0720 /* libLDNetDiagnoService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = libLDNetDiagnoService.framework; sourceTree = "<group>"; };
 		16B8D7401FD4DBFC00AF0720 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		16B8D7411FD4DC0B00AF0720 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		16B8D7421FD4DC1100AF0720 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
@@ -101,8 +108,6 @@
 		16B8D7581FD5225300AF0720 /* STSimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSimplePing.h; sourceTree = "<group>"; };
 		16B8D75E1FD5282300AF0720 /* STDDebugPingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STDDebugPingViewController.h; sourceTree = "<group>"; };
 		16B8D75F1FD5282400AF0720 /* STDDebugPingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STDDebugPingViewController.m; sourceTree = "<group>"; };
-		16B8D7621FD530F600AF0720 /* GetDeviceIPAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetDeviceIPAddress.h; sourceTree = "<group>"; };
-		16B8D7631FD530F600AF0720 /* GetDeviceIPAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetDeviceIPAddress.m; sourceTree = "<group>"; };
 		41CDE3D0AA92C58E80CA273C /* libPods-NetWorkTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NetWorkTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FD72F5786DACD0FE3F8C6D7 /* Pods-NetWorkTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetWorkTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetWorkTest/Pods-NetWorkTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,7 +120,6 @@
 				16B8D7491FD4DD9200AF0720 /* libresolv.9.tbd in Frameworks */,
 				16B8D7481FD4DD8E00AF0720 /* libresolv.tbd in Frameworks */,
 				16B8D7471FD4DC9D00AF0720 /* CoreMotion.framework in Frameworks */,
-				16B8D73F1FD4DBE800AF0720 /* libLDNetDiagnoService.framework in Frameworks */,
 				B74E3911311C2F8E096664C9 /* libPods-NetWorkTest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +141,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16774D451FD587FF0065B5F5 /* MXDownload */ = {
+			isa = PBXGroup;
+			children = (
+				16774D461FD587FF0065B5F5 /* MXDownloadManager.h */,
+				16774D471FD587FF0065B5F5 /* MXDownloadModel.h */,
+				16774D481FD587FF0065B5F5 /* MXDownloadModel.m */,
+				16774D491FD587FF0065B5F5 /* MXDownloadManager.m */,
+			);
+			path = MXDownload;
+			sourceTree = "<group>";
+		};
 		16B8D6E71FD4DB6100AF0720 = {
 			isa = PBXGroup;
 			children = (
@@ -162,11 +177,13 @@
 		16B8D6F21FD4DB6100AF0720 /* NetWorkTest */ = {
 			isa = PBXGroup;
 			children = (
+				16774D451FD587FF0065B5F5 /* MXDownload */,
 				16B8D6F61FD4DB6100AF0720 /* ViewController.h */,
 				16B8D6F71FD4DB6100AF0720 /* ViewController.m */,
 				16B8D75E1FD5282300AF0720 /* STDDebugPingViewController.h */,
 				16B8D75F1FD5282400AF0720 /* STDDebugPingViewController.m */,
-				16B8D7611FD530F600AF0720 /* getIpAddress */,
+				16774D401FD587B00065B5F5 /* ThirdViewController.h */,
+				16774D411FD587B00065B5F5 /* ThirdViewController.m */,
 				16B8D7501FD5225300AF0720 /* ping */,
 				16B8D7251FD4DB7500AF0720 /* LDNetDiagnoService */,
 				16B8D6F31FD4DB6100AF0720 /* AppDelegate.h */,
@@ -201,7 +218,6 @@
 		16B8D7251FD4DB7500AF0720 /* LDNetDiagnoService */ = {
 			isa = PBXGroup;
 			children = (
-				16B8D73E1FD4DBE800AF0720 /* libLDNetDiagnoService.framework */,
 				16B8D7261FD4DB7500AF0720 /* LDNetDiagnoService.h */,
 				16B8D7271FD4DB7500AF0720 /* LDNetGetAddress.h */,
 				16B8D7281FD4DB7500AF0720 /* LDNetTraceRoute.m */,
@@ -224,6 +240,7 @@
 		16B8D73C1FD4DB9700AF0720 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				16774D4C1FD58C2F0065B5F5 /* MobileCoreServices.framework */,
 				16B8D7461FD4DC8800AF0720 /* libz.tbd */,
 				16B8D7451FD4DC3D00AF0720 /* libresolv.9.tbd */,
 				16B8D7441FD4DC1D00AF0720 /* AVFoundation.framework */,
@@ -256,15 +273,6 @@
 				16B8D7581FD5225300AF0720 /* STSimplePing.h */,
 			);
 			path = PingTester;
-			sourceTree = "<group>";
-		};
-		16B8D7611FD530F600AF0720 /* getIpAddress */ = {
-			isa = PBXGroup;
-			children = (
-				16B8D7621FD530F600AF0720 /* GetDeviceIPAddress.h */,
-				16B8D7631FD530F600AF0720 /* GetDeviceIPAddress.m */,
-			);
-			path = getIpAddress;
 			sourceTree = "<group>";
 		};
 		CE0DC5F4FC8D249C77687B45 /* Pods */ = {
@@ -468,13 +476,15 @@
 				16B8D75A1FD5225300AF0720 /* STDebugFoundation.m in Sources */,
 				16B8D7391FD4DB7500AF0720 /* LDNetGetAddress.m in Sources */,
 				16B8D7601FD5282400AF0720 /* STDDebugPingViewController.m in Sources */,
-				16B8D7641FD530F600AF0720 /* GetDeviceIPAddress.m in Sources */,
 				16B8D7351FD4DB7500AF0720 /* LDNetTraceRoute.m in Sources */,
 				16B8D7361FD4DB7500AF0720 /* LDNetTimer.m in Sources */,
 				16B8D7381FD4DB7500AF0720 /* LDNetPing.m in Sources */,
 				16B8D7031FD4DB6100AF0720 /* main.m in Sources */,
+				16774D4B1FD587FF0065B5F5 /* MXDownloadManager.m in Sources */,
 				16B8D6F51FD4DB6100AF0720 /* AppDelegate.m in Sources */,
+				16774D4A1FD587FF0065B5F5 /* MXDownloadModel.m in Sources */,
 				16B8D75C1FD5225300AF0720 /* STDPingServices.m in Sources */,
+				16774D421FD587B00065B5F5 /* ThirdViewController.m in Sources */,
 				16B8D7371FD4DB7500AF0720 /* LDSimplePing.m in Sources */,
 				16B8D73B1FD4DB7500AF0720 /* LDNetConnect.m in Sources */,
 				16B8D73A1FD4DB7500AF0720 /* LDNetDiagnoService.m in Sources */,
