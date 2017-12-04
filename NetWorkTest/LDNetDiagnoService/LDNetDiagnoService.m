@@ -15,7 +15,7 @@
 #import "LDNetTimer.h"
 #import "LDNetConnect.h"
 
-static NSString *const kPingOpenServerIP = @"";
+static NSString *const kPingOpenServerIP = @"www.baidu.com";
 static NSString *const kCheckOutIPURL = @"";
 
 @interface LDNetDiagnoService () <LDNetPingDelegate, LDNetTraceRouteDelegate,

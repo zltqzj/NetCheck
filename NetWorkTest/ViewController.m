@@ -70,7 +70,7 @@
     _txtView_log.scrollEnabled = YES;
     _txtView_log.editable = NO;
     _txtView_log.frame =
-    CGRectMake(0.0f, 140.0f, self.view.frame.size.width, self.view.frame.size.height - 120.0f);
+    CGRectMake(0.0f, 140.0f, self.view.frame.size.width, self.view.frame.size.height - 170.0f);
     [self.view addSubview:_txtView_log];
     
     // Do any additional setup after loading the view, typically from a nib.

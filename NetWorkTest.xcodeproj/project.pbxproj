@@ -26,6 +26,12 @@
 		16B8D7471FD4DC9D00AF0720 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B8D7411FD4DC0B00AF0720 /* CoreMotion.framework */; };
 		16B8D7481FD4DD8E00AF0720 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B8D7421FD4DC1100AF0720 /* libresolv.tbd */; };
 		16B8D7491FD4DD9200AF0720 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B8D7451FD4DC3D00AF0720 /* libresolv.9.tbd */; };
+		16B8D75A1FD5225300AF0720 /* STDebugFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D7511FD5225300AF0720 /* STDebugFoundation.m */; };
+		16B8D75C1FD5225300AF0720 /* STDPingServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D7541FD5225300AF0720 /* STDPingServices.m */; };
+		16B8D75D1FD5225300AF0720 /* STSimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D7571FD5225300AF0720 /* STSimplePing.m */; };
+		16B8D7601FD5282400AF0720 /* STDDebugPingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D75F1FD5282400AF0720 /* STDDebugPingViewController.m */; };
+		16B8D7641FD530F600AF0720 /* GetDeviceIPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D7631FD530F600AF0720 /* GetDeviceIPAddress.m */; };
+		B74E3911311C2F8E096664C9 /* libPods-NetWorkTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CDE3D0AA92C58E80CA273C /* libPods-NetWorkTest.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		021D1F8DD54DDE8A82019594 /* Pods-NetWorkTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetWorkTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetWorkTest/Pods-NetWorkTest.debug.xcconfig"; sourceTree = "<group>"; };
 		16B8D6F01FD4DB6100AF0720 /* NetWorkTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetWorkTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16B8D6F31FD4DB6100AF0720 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		16B8D6F41FD4DB6100AF0720 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -86,6 +93,18 @@
 		16B8D7441FD4DC1D00AF0720 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		16B8D7451FD4DC3D00AF0720 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
 		16B8D7461FD4DC8800AF0720 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		16B8D7511FD5225300AF0720 /* STDebugFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STDebugFoundation.m; sourceTree = "<group>"; };
+		16B8D7521FD5225300AF0720 /* STDPingServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STDPingServices.h; sourceTree = "<group>"; };
+		16B8D7541FD5225300AF0720 /* STDPingServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STDPingServices.m; sourceTree = "<group>"; };
+		16B8D7551FD5225300AF0720 /* STDebugFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STDebugFoundation.h; sourceTree = "<group>"; };
+		16B8D7571FD5225300AF0720 /* STSimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSimplePing.m; sourceTree = "<group>"; };
+		16B8D7581FD5225300AF0720 /* STSimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSimplePing.h; sourceTree = "<group>"; };
+		16B8D75E1FD5282300AF0720 /* STDDebugPingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STDDebugPingViewController.h; sourceTree = "<group>"; };
+		16B8D75F1FD5282400AF0720 /* STDDebugPingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STDDebugPingViewController.m; sourceTree = "<group>"; };
+		16B8D7621FD530F600AF0720 /* GetDeviceIPAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetDeviceIPAddress.h; sourceTree = "<group>"; };
+		16B8D7631FD530F600AF0720 /* GetDeviceIPAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetDeviceIPAddress.m; sourceTree = "<group>"; };
+		41CDE3D0AA92C58E80CA273C /* libPods-NetWorkTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NetWorkTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FD72F5786DACD0FE3F8C6D7 /* Pods-NetWorkTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetWorkTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetWorkTest/Pods-NetWorkTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +116,7 @@
 				16B8D7481FD4DD8E00AF0720 /* libresolv.tbd in Frameworks */,
 				16B8D7471FD4DC9D00AF0720 /* CoreMotion.framework in Frameworks */,
 				16B8D73F1FD4DBE800AF0720 /* libLDNetDiagnoService.framework in Frameworks */,
+				B74E3911311C2F8E096664C9 /* libPods-NetWorkTest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +145,7 @@
 				16B8D7161FD4DB6100AF0720 /* NetWorkTestUITests */,
 				16B8D6F11FD4DB6100AF0720 /* Products */,
 				16B8D73C1FD4DB9700AF0720 /* Frameworks */,
+				CE0DC5F4FC8D249C77687B45 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,11 +162,15 @@
 		16B8D6F21FD4DB6100AF0720 /* NetWorkTest */ = {
 			isa = PBXGroup;
 			children = (
+				16B8D6F61FD4DB6100AF0720 /* ViewController.h */,
+				16B8D6F71FD4DB6100AF0720 /* ViewController.m */,
+				16B8D75E1FD5282300AF0720 /* STDDebugPingViewController.h */,
+				16B8D75F1FD5282400AF0720 /* STDDebugPingViewController.m */,
+				16B8D7611FD530F600AF0720 /* getIpAddress */,
+				16B8D7501FD5225300AF0720 /* ping */,
 				16B8D7251FD4DB7500AF0720 /* LDNetDiagnoService */,
 				16B8D6F31FD4DB6100AF0720 /* AppDelegate.h */,
 				16B8D6F41FD4DB6100AF0720 /* AppDelegate.m */,
-				16B8D6F61FD4DB6100AF0720 /* ViewController.h */,
-				16B8D6F71FD4DB6100AF0720 /* ViewController.m */,
 				16B8D6F91FD4DB6100AF0720 /* Main.storyboard */,
 				16B8D6FC1FD4DB6100AF0720 /* Assets.xcassets */,
 				16B8D6FE1FD4DB6100AF0720 /* LaunchScreen.storyboard */,
@@ -207,8 +232,48 @@
 				16B8D7411FD4DC0B00AF0720 /* CoreMotion.framework */,
 				16B8D7401FD4DBFC00AF0720 /* CoreFoundation.framework */,
 				16B8D73D1FD4DB9800AF0720 /* CoreTelephony.framework */,
+				41CDE3D0AA92C58E80CA273C /* libPods-NetWorkTest.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		16B8D7501FD5225300AF0720 /* ping */ = {
+			isa = PBXGroup;
+			children = (
+				16B8D7511FD5225300AF0720 /* STDebugFoundation.m */,
+				16B8D7521FD5225300AF0720 /* STDPingServices.h */,
+				16B8D7541FD5225300AF0720 /* STDPingServices.m */,
+				16B8D7551FD5225300AF0720 /* STDebugFoundation.h */,
+				16B8D7561FD5225300AF0720 /* PingTester */,
+			);
+			path = ping;
+			sourceTree = "<group>";
+		};
+		16B8D7561FD5225300AF0720 /* PingTester */ = {
+			isa = PBXGroup;
+			children = (
+				16B8D7571FD5225300AF0720 /* STSimplePing.m */,
+				16B8D7581FD5225300AF0720 /* STSimplePing.h */,
+			);
+			path = PingTester;
+			sourceTree = "<group>";
+		};
+		16B8D7611FD530F600AF0720 /* getIpAddress */ = {
+			isa = PBXGroup;
+			children = (
+				16B8D7621FD530F600AF0720 /* GetDeviceIPAddress.h */,
+				16B8D7631FD530F600AF0720 /* GetDeviceIPAddress.m */,
+			);
+			path = getIpAddress;
+			sourceTree = "<group>";
+		};
+		CE0DC5F4FC8D249C77687B45 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				021D1F8DD54DDE8A82019594 /* Pods-NetWorkTest.debug.xcconfig */,
+				6FD72F5786DACD0FE3F8C6D7 /* Pods-NetWorkTest.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,9 +283,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 16B8D71C1FD4DB6100AF0720 /* Build configuration list for PBXNativeTarget "NetWorkTest" */;
 			buildPhases = (
+				BFE8C7321672BA6C819D1324 /* [CP] Check Pods Manifest.lock */,
 				16B8D6EC1FD4DB6100AF0720 /* Sources */,
 				16B8D6ED1FD4DB6100AF0720 /* Frameworks */,
 				16B8D6EE1FD4DB6100AF0720 /* Resources */,
+				2339DC666E8F04B0404F4DCB /* [CP] Embed Pods Frameworks */,
+				E5DDEBC2031361F17C975101 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -339,18 +407,74 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2339DC666E8F04B0404F4DCB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NetWorkTest/Pods-NetWorkTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFE8C7321672BA6C819D1324 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NetWorkTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5DDEBC2031361F17C975101 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NetWorkTest/Pods-NetWorkTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		16B8D6EC1FD4DB6100AF0720 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16B8D75D1FD5225300AF0720 /* STSimplePing.m in Sources */,
 				16B8D6F81FD4DB6100AF0720 /* ViewController.m in Sources */,
+				16B8D75A1FD5225300AF0720 /* STDebugFoundation.m in Sources */,
 				16B8D7391FD4DB7500AF0720 /* LDNetGetAddress.m in Sources */,
+				16B8D7601FD5282400AF0720 /* STDDebugPingViewController.m in Sources */,
+				16B8D7641FD530F600AF0720 /* GetDeviceIPAddress.m in Sources */,
 				16B8D7351FD4DB7500AF0720 /* LDNetTraceRoute.m in Sources */,
 				16B8D7361FD4DB7500AF0720 /* LDNetTimer.m in Sources */,
 				16B8D7381FD4DB7500AF0720 /* LDNetPing.m in Sources */,
 				16B8D7031FD4DB6100AF0720 /* main.m in Sources */,
 				16B8D6F51FD4DB6100AF0720 /* AppDelegate.m in Sources */,
+				16B8D75C1FD5225300AF0720 /* STDPingServices.m in Sources */,
 				16B8D7371FD4DB7500AF0720 /* LDSimplePing.m in Sources */,
 				16B8D73B1FD4DB7500AF0720 /* LDNetConnect.m in Sources */,
 				16B8D73A1FD4DB7500AF0720 /* LDNetDiagnoService.m in Sources */,
@@ -514,6 +638,7 @@
 		};
 		16B8D71D1FD4DB6100AF0720 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 021D1F8DD54DDE8A82019594 /* Pods-NetWorkTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -535,6 +660,7 @@
 		};
 		16B8D71E1FD4DB6100AF0720 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FD72F5786DACD0FE3F8C6D7 /* Pods-NetWorkTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
