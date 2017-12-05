@@ -15,8 +15,8 @@
 #import "LDNetTimer.h"
 #import "LDNetConnect.h"
 
-static NSString *const kPingOpenServerIP = @"www.baidu.com";
-static NSString *const kCheckOutIPURL = @"";
+static NSString *const kPingOpenServerIP = @"api.boxfish.cn";
+static NSString *const kCheckOutIPURL = @"http://nstool.netease.com/info.js";
 
 @interface LDNetDiagnoService () <LDNetPingDelegate, LDNetTraceRouteDelegate,
                                   LDNetConnectDelegate> {
@@ -93,7 +93,7 @@ static NSString *const kCheckOutIPURL = @"";
     _isRunning = YES;
     [_logInfo setString:@""];
     [self recordStepInfo:@"开始诊断..."];
-    [self recordCurrentAppVersion];
+//    [self recordCurrentAppVersion];
     [self recordLocalNetEnvironment];
 
     //未联网不进行任何检测
@@ -343,7 +343,7 @@ static NSString *const kCheckOutIPURL = @"";
 
     //不管服务器解析DNS是否可达，均需要ping指定ip地址
     if([_localIp rangeOfString:@":"].location == NSNotFound){
-        [pingAdd addObject:kPingOpenServerIP];
+        [pingAdd addObject:_dormain];
         [pingInfo addObject:@"开放服务器"];
     }
 

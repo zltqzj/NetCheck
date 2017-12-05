@@ -20,6 +20,8 @@
     BOOL _isRunning;
 }
 
+@property(strong,nonatomic) NSMutableArray* apiArray;
+@property(assign,nonatomic) NSInteger checkCount;
 @end
 
 @implementation ViewController
@@ -27,6 +29,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _apiArray = [NSMutableArray new];
+    [_apiArray addObject:@"api.boxfish.cn"];
+    [_apiArray addObject:@"storage.boxfish.cn"];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"网络诊断Demo";
     
@@ -57,7 +63,7 @@
     [[UITextField alloc] initWithFrame:CGRectMake(130.0f, 79.0f, 180.0f, 50.0f)];
     _txtfield_dormain.delegate = self;
     _txtfield_dormain.returnKeyType = UIReturnKeyDone;
-    _txtfield_dormain.text = @"www.baidu.com";
+    _txtfield_dormain.text = _apiArray[0] ; //@"www.baidu.com";
     [self.view addSubview:_txtfield_dormain];
     
     
@@ -86,12 +92,20 @@
                                                       MobileNetCode:nil];
     _netDiagnoService.delegate = self;
     _isRunning = NO;
+    _txtView_log.text = @"";
+    _logInfo = @"";
 }
 
 
 - (void)startNetDiagnosis
 {
+    
+    if (_checkCount == _apiArray.count) {
+        return ;
+    }
     [_txtfield_dormain resignFirstResponder];
+   
+     _txtfield_dormain.text = _apiArray[_checkCount] ; //@"www.baidu.com";
     _netDiagnoService.dormain = _txtfield_dormain.text;
     if (!_isRunning) {
         [_indicatorView startAnimating];
@@ -99,8 +113,8 @@
         [btn setBackgroundColor:[UIColor colorWithWhite:0.3 alpha:1.0]];
         [btn setUserInteractionEnabled:FALSE];
         [self performSelector:@selector(delayMethod) withObject:nil afterDelay:3.0f];
-        _txtView_log.text = @"";
-        _logInfo = @"";
+//        _txtView_log.text = @"";
+//        _logInfo = @"";
         _isRunning = !_isRunning;
         [_netDiagnoService startNetDiagnosis];
     } else {
@@ -135,7 +149,7 @@
 
 - (void)netDiagnosisStepInfo:(NSString *)stepInfo
 {
-    NSLog(@"%@", stepInfo);
+//    NSLog(@"----------------%@", stepInfo);
     _logInfo = [_logInfo stringByAppendingString:stepInfo];
     dispatch_async(dispatch_get_main_queue(), ^{
         _txtView_log.text = _logInfo;
@@ -145,14 +159,39 @@
 
 - (void)netDiagnosisDidEnd:(NSString *)allLogInfo;
 {
-    NSLog(@"logInfo>>>>>\n%@", allLogInfo);
-    //可以保存到文件，也可以通过邮件发送回来
+     _checkCount ++ ;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_indicatorView stopAnimating];
-        [btn setTitle:@"开始诊断" forState:UIControlStateNormal];
         _isRunning = NO;
+        _logInfo = [_logInfo stringByAppendingString:@"--------------"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _txtView_log.text = _logInfo;
+        });
     });
+    
+    if (_checkCount == _apiArray.count ) {
+        NSLog(@"logInfo>>>>>\n%@", allLogInfo);
+        //可以保存到文件，也可以通过邮件发送回来
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_indicatorView stopAnimating];
+            [btn setTitle:@"开始诊断" forState:UIControlStateNormal];
+            _isRunning = NO;
+            _checkCount = 0;
+            
+            [self performSelector:@selector(delayMethod) withObject:nil afterDelay:3.0f];
+//             [_netDiagnoService stopNetDialogsis];
+        });
+    }
+    else{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self startNetDiagnosis];
+        });
+        
+//        [self performSelector:@selector(startNetDiagnosis) withObject:nil afterDelay:2.0f];
+      //   [self  startNetDiagnosis];
+    }
 }
+
 
 - (void)emailLogInfo
 {

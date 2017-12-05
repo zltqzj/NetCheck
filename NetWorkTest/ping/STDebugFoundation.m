@@ -13,7 +13,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = [UIColor whiteColor];
         self.textColor = [UIColor greenColor];
         if ([self respondsToSelector:@selector(layoutManager)]) {
             self.layoutManager.allowsNonContiguousLayout = NO;

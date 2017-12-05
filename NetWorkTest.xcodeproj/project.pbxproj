@@ -145,9 +145,9 @@
 			isa = PBXGroup;
 			children = (
 				16774D461FD587FF0065B5F5 /* MXDownloadManager.h */,
+				16774D491FD587FF0065B5F5 /* MXDownloadManager.m */,
 				16774D471FD587FF0065B5F5 /* MXDownloadModel.h */,
 				16774D481FD587FF0065B5F5 /* MXDownloadModel.m */,
-				16774D491FD587FF0065B5F5 /* MXDownloadManager.m */,
 			);
 			path = MXDownload;
 			sourceTree = "<group>";
@@ -177,13 +177,13 @@
 		16B8D6F21FD4DB6100AF0720 /* NetWorkTest */ = {
 			isa = PBXGroup;
 			children = (
-				16774D451FD587FF0065B5F5 /* MXDownload */,
 				16B8D6F61FD4DB6100AF0720 /* ViewController.h */,
 				16B8D6F71FD4DB6100AF0720 /* ViewController.m */,
 				16B8D75E1FD5282300AF0720 /* STDDebugPingViewController.h */,
 				16B8D75F1FD5282400AF0720 /* STDDebugPingViewController.m */,
 				16774D401FD587B00065B5F5 /* ThirdViewController.h */,
 				16774D411FD587B00065B5F5 /* ThirdViewController.m */,
+				16774D451FD587FF0065B5F5 /* MXDownload */,
 				16B8D7501FD5225300AF0720 /* ping */,
 				16B8D7251FD4DB7500AF0720 /* LDNetDiagnoService */,
 				16B8D6F31FD4DB6100AF0720 /* AppDelegate.h */,

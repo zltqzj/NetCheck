@@ -40,7 +40,7 @@
     self.textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 30, CGRectGetWidth(self.view.frame) - 100, 30)];
     self.textField.borderStyle = UITextBorderStyleRoundedRect;
     self.textField.placeholder = @"请输入IP地址或者域名";
-    self.textField.text = @"www.baidu.com";
+    self.textField.text = @"api.boxfish.cn";
     [self.view addSubview:self.textField];
     
     UIButton *goButton = [UIButton buttonWithType:UIButtonTypeCustom];
