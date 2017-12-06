@@ -2,13 +2,13 @@
 //  ViewController.m
 //  LDNetDiagnoServieDemo
 //
-//  Created by 庞辉 on 14-10-29.
-//  Copyright (c) 2014年 庞辉. All rights reserved.
+//  Created by zhaojian on 14-10-29.
+//  Copyright (c) 2017年 zhaojian. All rights reserved.
 //
 
 #import "ViewController.h"
 #import "LDNetDiagnoService.h"
-
+#import "MBProgressHUD.h"
 @interface ViewController () <LDNetDiagnoServiceDelegate, UITextFieldDelegate> {
     UIActivityIndicatorView *_indicatorView;
     UIButton *btn;
@@ -34,7 +34,7 @@
     [_apiArray addObject:@"storage.boxfish.cn"];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationItem.title = @"网络诊断Demo";
+    self.navigationItem.title = @"boxfish net check";
     
     _indicatorView = [[UIActivityIndicatorView alloc]
                       initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -52,7 +52,7 @@
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [btn.titleLabel setNumberOfLines:2];
-    [btn setTitle:@"开始诊断" forState:UIControlStateNormal];
+    [btn setTitle:@"Start" forState:UIControlStateNormal];
     [btn addTarget:self
             action:@selector(startNetDiagnosis)
   forControlEvents:UIControlEventTouchUpInside];
@@ -81,7 +81,7 @@
     
     // Do any additional setup after loading the view, typically from a nib.
     _netDiagnoService = [[LDNetDiagnoService alloc] initWithAppCode:@"test"
-                                                            appName:@"网络诊断应用"
+                                                            appName:@"boxfish"
                                                          appVersion:@"1.0.0"
                                                              userID:@"zhaojian@boxfish.cn"
                                                            deviceID:nil
@@ -99,8 +99,14 @@
 
 - (void)startNetDiagnosis
 {
+    if (_checkCount == 0) {
+        _txtView_log.text = @"";
+        _logInfo = @"";
+        btn.userInteractionEnabled = NO;
+    }
     
     if (_checkCount == _apiArray.count) {
+        btn.userInteractionEnabled = YES;
         return ;
     }
     [_txtfield_dormain resignFirstResponder];
@@ -112,7 +118,7 @@
         [btn setTitle:@"停止诊断" forState:UIControlStateNormal];
         [btn setBackgroundColor:[UIColor colorWithWhite:0.3 alpha:1.0]];
         [btn setUserInteractionEnabled:FALSE];
-        [self performSelector:@selector(delayMethod) withObject:nil afterDelay:3.0f];
+//        [self performSelector:@selector(delayMethod) withObject:nil afterDelay:3.0f];
 //        _txtView_log.text = @"";
 //        _logInfo = @"";
         _isRunning = !_isRunning;
@@ -123,7 +129,7 @@
         [btn setTitle:@"开始诊断" forState:UIControlStateNormal];
         [btn setBackgroundColor:[UIColor colorWithWhite:0.3 alpha:1.0]];
         [btn setUserInteractionEnabled:FALSE];
-        [self performSelector:@selector(delayMethod) withObject:nil afterDelay:3.0f];
+//        [self performSelector:@selector(delayMethod) withObject:nil afterDelay:3.0f];
         [_netDiagnoService stopNetDialogsis];
     }
 }
@@ -169,6 +175,14 @@
     });
     
     if (_checkCount == _apiArray.count ) {
+        [self  copyToPasteboard];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"tips" message:@"It has been copied to the clipboard" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+      
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
         NSLog(@"logInfo>>>>>\n%@", allLogInfo);
         //可以保存到文件，也可以通过邮件发送回来
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -198,6 +212,12 @@
     [_netDiagnoService printLogInfo];
 }
 
+
+// 复制到剪切板
+- (void)copyToPasteboard{
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = _txtView_log.text;
+}
 
 #pragma mark -
 #pragma mark - textFieldDelegate

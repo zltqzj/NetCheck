@@ -84,11 +84,7 @@
 }
 
 
-// 复制到剪切板
-- (void)copyToPasteboard{
-//    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-//    pasteboard.string = self.link.text;
-}
+
 
 @end
 

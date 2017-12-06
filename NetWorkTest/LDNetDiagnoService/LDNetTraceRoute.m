@@ -2,8 +2,8 @@
 //  TraceRoute.m
 //  LDNetCheckServiceDemo
 //
-//  Created by 庞辉 on 14-10-29.
-//  Copyright (c) 2014年 庞辉. All rights reserved.
+//  Created by zhaojian on 14-10-29.
+//  Copyright (c) 2017年 zhaojian. All rights reserved.
 //
 
 #include <netdb.h>

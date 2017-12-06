@@ -3,7 +3,7 @@
 //  LDNetDiagnoServiceDemo
 //
 //  Created by ZhangHaiyang on 15-8-5.
-//  Copyright (c) 2015年 庞辉. All rights reserved.
+//  Copyright (c) 2015年 zhaojian. All rights reserved.
 //
 
 #import "LDNetGetAddress.h"
