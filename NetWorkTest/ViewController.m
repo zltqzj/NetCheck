@@ -76,7 +76,7 @@
     _txtView_log.scrollEnabled = YES;
     _txtView_log.editable = NO;
     _txtView_log.frame =
-    CGRectMake(0.0f, 140.0f, self.view.frame.size.width, self.view.frame.size.height - 170.0f);
+    CGRectMake(0.0f, 140.0f, self.view.frame.size.width, self.view.frame.size.height - 120.0f);
     [self.view addSubview:_txtView_log];
     
     // Do any additional setup after loading the view, typically from a nib.
@@ -126,7 +126,7 @@
     } else {
         [_indicatorView stopAnimating];
         _isRunning = !_isRunning;
-        [btn setTitle:@"开始诊断" forState:UIControlStateNormal];
+        [btn setTitle:@"Start" forState:UIControlStateNormal];
         [btn setBackgroundColor:[UIColor colorWithWhite:0.3 alpha:1.0]];
         [btn setUserInteractionEnabled:FALSE];
 //        [self performSelector:@selector(delayMethod) withObject:nil afterDelay:3.0f];
@@ -150,7 +150,7 @@
 #pragma mark NetDiagnosisDelegate
 - (void)netDiagnosisDidStarted
 {
-    NSLog(@"开始诊断～～～");
+    NSLog(@"Start～～～");
 }
 
 - (void)netDiagnosisStepInfo:(NSString *)stepInfo
@@ -187,7 +187,7 @@
         //可以保存到文件，也可以通过邮件发送回来
         dispatch_async(dispatch_get_main_queue(), ^{
             [_indicatorView stopAnimating];
-            [btn setTitle:@"开始诊断" forState:UIControlStateNormal];
+            [btn setTitle:@"Start" forState:UIControlStateNormal];
             _isRunning = NO;
             _checkCount = 0;
             

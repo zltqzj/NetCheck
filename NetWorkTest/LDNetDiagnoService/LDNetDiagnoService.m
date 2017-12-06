@@ -92,7 +92,7 @@ static NSString *const kCheckOutIPURL = @"http://nstool.netease.com/info.js";
 
     _isRunning = YES;
     [_logInfo setString:@""];
-    [self recordStepInfo:@"开始诊断..."];
+    [self recordStepInfo:@"Start..."];
 //    [self recordCurrentAppVersion];
     [self recordLocalNetEnvironment];
 

@@ -354,7 +354,7 @@
 				TargetAttributes = {
 					16B8D6EF1FD4DB6100AF0720 = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					16B8D7071FD4DB6100AF0720 = {
 						CreatedOnToolsVersion = 9.1;
@@ -652,8 +652,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DN4X74J86T;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Boxfish Education Technology Co., Ltd.";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = X4AW54WQH8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NetWorkTest/LDNetDiagnoService",
@@ -662,8 +663,9 @@
 				INFOPLIST_FILE = NetWorkTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zj.opencv;
+				PRODUCT_BUNDLE_IDENTIFIER = com.boxfish.networkCheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "boxfish network check";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -674,8 +676,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DN4X74J86T;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Boxfish Education Technology Co., Ltd.";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = X4AW54WQH8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NetWorkTest/LDNetDiagnoService",
@@ -684,8 +687,9 @@
 				INFOPLIST_FILE = NetWorkTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zj.opencv;
+				PRODUCT_BUNDLE_IDENTIFIER = com.boxfish.networkCheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "boxfish network check";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
