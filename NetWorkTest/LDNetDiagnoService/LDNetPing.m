@@ -11,7 +11,7 @@
 #import "LDNetPing.h"
 #import "LDNetTimer.h"
 
-#define MAXCOUNT_PING 4
+#define MAXCOUNT_PING 20
 
 @interface LDNetPing () {
     BOOL _isStartSuccess; //监测第一次ping是否成功

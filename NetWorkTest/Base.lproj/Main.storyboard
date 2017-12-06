@@ -140,22 +140,6 @@
             </objects>
             <point key="canvasLocation" x="-854" y="903"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="DT9-aB-J7X">
-            <objects>
-                <viewController id="ASF-Fo-8wa" customClass="ViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Qjp-wW-02X">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="l89-LQ-xdZ"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Xga-qt-9zI"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aTH-GI-jCY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="612" y="-260"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Fh1-hq-NoK">
             <objects>
@@ -201,12 +185,61 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="ASF-Fo-8wa" kind="relationship" relationship="rootViewController" id="ztM-8F-M19"/>
+                        <segue destination="RxB-3H-ihy" kind="relationship" relationship="rootViewController" id="dZa-PM-ro7"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u9V-MY-RvA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-153.59999999999999" y="-251.87406296851577"/>
+        </scene>
+        <!--boxfish network check-->
+        <scene sceneID="xhz-3O-U8m">
+            <objects>
+                <viewController id="RxB-3H-ihy" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5hx-UN-qMN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text=" " translatesAutoresizingMaskIntoConstraints="NO" id="c5M-f7-ly6">
+                                <rect key="frame" x="16" y="87" width="343" height="481"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="RxB-3H-ihy" id="Lso-Q7-Mit"/>
+                                </connections>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENV-jE-ubs">
+                                <rect key="frame" x="147" y="576" width="80" height="80"/>
+                                <color key="backgroundColor" red="1" green="0.43398983819999998" blue="0.48972056949999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="DCK-XX-Kta"/>
+                                    <constraint firstAttribute="height" constant="80" id="eCU-sT-SXl"/>
+                                </constraints>
+                                <state key="normal" title="Start"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="syQ-2j-5N7" firstAttribute="trailing" secondItem="c5M-f7-ly6" secondAttribute="trailing" constant="16" id="2Xi-EH-1i4"/>
+                            <constraint firstItem="c5M-f7-ly6" firstAttribute="leading" secondItem="syQ-2j-5N7" secondAttribute="leading" constant="16" id="BTm-XE-9gI"/>
+                            <constraint firstItem="ENV-jE-ubs" firstAttribute="top" secondItem="c5M-f7-ly6" secondAttribute="bottom" constant="8" id="I7F-MV-HxV"/>
+                            <constraint firstItem="ENV-jE-ubs" firstAttribute="centerX" secondItem="5hx-UN-qMN" secondAttribute="centerX" id="O7m-CB-1PH"/>
+                            <constraint firstItem="c5M-f7-ly6" firstAttribute="top" secondItem="syQ-2j-5N7" secondAttribute="top" constant="23" id="dba-Ko-2Be"/>
+                            <constraint firstItem="syQ-2j-5N7" firstAttribute="bottom" secondItem="ENV-jE-ubs" secondAttribute="bottom" constant="11" id="ifJ-Sn-XrI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="syQ-2j-5N7"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="boxfish network check" id="bGQ-st-HhO"/>
+                    <connections>
+                        <outlet property="startBtn" destination="ENV-jE-ubs" id="3WH-cZ-ruR"/>
+                        <outlet property="txtView_log" destination="c5M-f7-ly6" id="o6v-pf-OhL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3bv-f0-9x9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="648.79999999999995" y="-250.52473763118442"/>
         </scene>
     </scenes>
 </document>

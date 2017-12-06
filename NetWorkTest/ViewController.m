@@ -10,21 +10,22 @@
 #import "LDNetDiagnoService.h"
 #import "MBProgressHUD.h"
 @interface ViewController () <LDNetDiagnoServiceDelegate, UITextFieldDelegate> {
-    UIActivityIndicatorView *_indicatorView;
-    UIButton *btn;
-    UITextView *_txtView_log;
-    UITextField *_txtfield_dormain;
     
+    UITextField *_txtfield_dormain;
     NSString *_logInfo;
     LDNetDiagnoService *_netDiagnoService;
     BOOL _isRunning;
 }
-
+@property(strong,nonatomic) UIActivityIndicatorView* indicatorView;
+@property(weak,nonatomic) IBOutlet UIButton *startBtn;
+@property(weak,nonatomic) IBOutlet UITextView *txtView_log;
 @property(strong,nonatomic) NSMutableArray* apiArray;
 @property(assign,nonatomic) NSInteger checkCount;
+
 @end
 
 @implementation ViewController
+
 
 - (void)viewDidLoad
 {
@@ -33,11 +34,7 @@
     [_apiArray addObject:@"api.boxfish.cn"];
     [_apiArray addObject:@"storage.boxfish.cn"];
     
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationItem.title = @"boxfish net check";
-    
-    _indicatorView = [[UIActivityIndicatorView alloc]
-                      initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    _indicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     _indicatorView.frame = CGRectMake(0, 0, 30, 30);
     _indicatorView.hidden = NO;
     _indicatorView.hidesWhenStopped = YES;
@@ -45,39 +42,21 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:_indicatorView];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    
-    btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(10.0f, 79.0f, 100.0f, 50.0f);
-    [btn setBackgroundColor:[UIColor lightGrayColor]];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btn.titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [btn.titleLabel setNumberOfLines:2];
-    [btn setTitle:@"Start" forState:UIControlStateNormal];
-    [btn addTarget:self
-            action:@selector(startNetDiagnosis)
-  forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
-    
-    
+
+    [_startBtn addTarget:self action:@selector(startNetDiagnosis)forControlEvents:UIControlEventTouchUpInside];
+    _startBtn.layer.cornerRadius = 40;
     _txtfield_dormain =
     [[UITextField alloc] initWithFrame:CGRectMake(130.0f, 79.0f, 180.0f, 50.0f)];
-    _txtfield_dormain.delegate = self;
     _txtfield_dormain.returnKeyType = UIReturnKeyDone;
-    _txtfield_dormain.text = _apiArray[0] ; //@"www.baidu.com";
+    _txtfield_dormain.text = _apiArray[0] ;
+    _txtfield_dormain.alpha = 0;
     [self.view addSubview:_txtfield_dormain];
     
     
-    _txtView_log = [[UITextView alloc] initWithFrame:CGRectZero];
+   
     _txtView_log.layer.borderWidth = 1.0f;
     _txtView_log.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _txtView_log.backgroundColor = [UIColor whiteColor];
-    _txtView_log.font = [UIFont systemFontOfSize:10.0f];
-    _txtView_log.textAlignment = NSTextAlignmentLeft;
-    _txtView_log.scrollEnabled = YES;
-    _txtView_log.editable = NO;
-    _txtView_log.frame =
-    CGRectMake(0.0f, 140.0f, self.view.frame.size.width, self.view.frame.size.height - 120.0f);
-    [self.view addSubview:_txtView_log];
+    
     
     // Do any additional setup after loading the view, typically from a nib.
     _netDiagnoService = [[LDNetDiagnoService alloc] initWithAppCode:@"test"
@@ -94,6 +73,7 @@
     _isRunning = NO;
     _txtView_log.text = @"";
     _logInfo = @"";
+    
 }
 
 
@@ -102,11 +82,11 @@
     if (_checkCount == 0) {
         _txtView_log.text = @"";
         _logInfo = @"";
-        btn.userInteractionEnabled = NO;
+        _startBtn.userInteractionEnabled = NO;
     }
     
     if (_checkCount == _apiArray.count) {
-        btn.userInteractionEnabled = YES;
+        _startBtn.userInteractionEnabled = YES;
         return ;
     }
     [_txtfield_dormain resignFirstResponder];
@@ -115,29 +95,23 @@
     _netDiagnoService.dormain = _txtfield_dormain.text;
     if (!_isRunning) {
         [_indicatorView startAnimating];
-        [btn setTitle:@"停止诊断" forState:UIControlStateNormal];
-        [btn setBackgroundColor:[UIColor colorWithWhite:0.3 alpha:1.0]];
-        [btn setUserInteractionEnabled:FALSE];
-//        [self performSelector:@selector(delayMethod) withObject:nil afterDelay:3.0f];
-//        _txtView_log.text = @"";
-//        _logInfo = @"";
+        [_startBtn setTitle:@"……" forState:UIControlStateNormal];
+        [self add_animation];
+        [_startBtn setUserInteractionEnabled:FALSE];
         _isRunning = !_isRunning;
         [_netDiagnoService startNetDiagnosis];
     } else {
         [_indicatorView stopAnimating];
         _isRunning = !_isRunning;
-        [btn setTitle:@"Start" forState:UIControlStateNormal];
-        [btn setBackgroundColor:[UIColor colorWithWhite:0.3 alpha:1.0]];
-        [btn setUserInteractionEnabled:FALSE];
-//        [self performSelector:@selector(delayMethod) withObject:nil afterDelay:3.0f];
+        [_startBtn setTitle:@"Start" forState:UIControlStateNormal];
+        [_startBtn setUserInteractionEnabled:FALSE];
         [_netDiagnoService stopNetDialogsis];
     }
 }
 
 - (void)delayMethod
 {
-    [btn setBackgroundColor:[UIColor lightGrayColor]];
-    [btn setUserInteractionEnabled:TRUE];
+    [_startBtn setUserInteractionEnabled:TRUE];
 }
 
 - (void)didReceiveMemoryWarning
@@ -175,10 +149,10 @@
     });
     
     if (_checkCount == _apiArray.count ) {
-        [self  copyToPasteboard];
+        
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"tips" message:@"It has been copied to the clipboard" preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:nil];
       
         [alertController addAction:okAction];
         [self presentViewController:alertController animated:YES completion:nil];
@@ -187,12 +161,13 @@
         //可以保存到文件，也可以通过邮件发送回来
         dispatch_async(dispatch_get_main_queue(), ^{
             [_indicatorView stopAnimating];
-            [btn setTitle:@"Start" forState:UIControlStateNormal];
+            [_startBtn setTitle:@"Start" forState:UIControlStateNormal];
             _isRunning = NO;
             _checkCount = 0;
-            
+            [self  copyToPasteboard];
+            [self remove_animation];
             [self performSelector:@selector(delayMethod) withObject:nil afterDelay:3.0f];
-//             [_netDiagnoService stopNetDialogsis];
+
         });
     }
     else{
@@ -200,18 +175,15 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self startNetDiagnosis];
         });
-        
-//        [self performSelector:@selector(startNetDiagnosis) withObject:nil afterDelay:2.0f];
-      //   [self  startNetDiagnosis];
+ 
     }
 }
 
 
-- (void)emailLogInfo
-{
-    [_netDiagnoService printLogInfo];
-}
-
+//- (void)emailLogInfo
+//{
+//    [_netDiagnoService printLogInfo];
+//}
 
 // 复制到剪切板
 - (void)copyToPasteboard{
@@ -219,14 +191,23 @@
         pasteboard.string = _txtView_log.text;
 }
 
-#pragma mark -
-#pragma mark - textFieldDelegate
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
+-(void)add_animation{
+    CABasicAnimation* animation = [CABasicAnimation  animationWithKeyPath:@"opacity"];
+    animation.fromValue = [NSNumber numberWithInt:1];
+    animation.toValue = [NSNumber numberWithInt:0];
+    animation.autoreverses = YES;
+    animation.duration = 3.0;
+    animation.repeatCount = MAXFLOAT;
+    // animation.isRemovedOnCompletion = NO;    //.isRemovedOnCompletion = NO;
+    animation.fillMode = kCAFillModeForwards;
+    [_startBtn.layer addAnimation:animation forKey:@"aAlpha"];//.add(animation, forKey: "aAlpha");
 }
+
+-(void)remove_animation{
+    [_startBtn.layer removeAllAnimations];
+}
+
+
 
 
 @end
