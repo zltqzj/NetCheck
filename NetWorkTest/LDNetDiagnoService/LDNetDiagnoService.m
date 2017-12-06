@@ -14,6 +14,7 @@
 #import "LDNetGetAddress.h"
 #import "LDNetTimer.h"
 #import "LDNetConnect.h"
+#import "GetDeviceIPAddress.h"
 
 static NSString *const kPingOpenServerIP = @"api.boxfish.cn";
 static NSString *const kCheckOutIPURL = @"http://nstool.netease.com/info.js";
@@ -258,7 +259,7 @@ static NSString *const kCheckOutIPURL = @"http://nstool.netease.com/info.js";
                                                           [typeArr objectAtIndex:_curNetType - 1]]];
         }
     }
-
+    [self recordStepInfo:[NSString stringWithFormat:@"IP:%@",[GetDeviceIPAddress getDeviceIPIpAddresses]]];
     //本地ip信息
     _localIp = [LDNetGetAddress deviceIPAdress];
     [self recordStepInfo:[NSString stringWithFormat:@"当前本机IP: %@", _localIp]];

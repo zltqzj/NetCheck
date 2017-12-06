@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "MXDownloadModel.h"
-
+typedef void (^MyBlock)(NSString *myBlockStr);
 @interface MXDownloadManager : NSObject
+@property (nonatomic,copy) MyBlock myBlock;
 
 // 任务唯一标识
 @property (nonatomic, strong) NSString *taskIdentifier;

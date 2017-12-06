@@ -10,12 +10,12 @@
 #import "LDNetDiagnoService.h"
 #import "MBProgressHUD.h"
 @interface ViewController () <LDNetDiagnoServiceDelegate, UITextFieldDelegate> {
-    
     UITextField *_txtfield_dormain;
     NSString *_logInfo;
     LDNetDiagnoService *_netDiagnoService;
     BOOL _isRunning;
 }
+
 @property(strong,nonatomic) UIActivityIndicatorView* indicatorView;
 @property(weak,nonatomic) IBOutlet UIButton *startBtn;
 @property(weak,nonatomic) IBOutlet UITextView *txtView_log;
@@ -26,10 +26,15 @@
 
 @implementation ViewController
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+   
+    
+ 
+    
+  //  [GetIPAddress getIPAddress:YES]
+    
     _apiArray = [NSMutableArray new];
     [_apiArray addObject:@"api.boxfish.cn"];
     [_apiArray addObject:@"storage.boxfish.cn"];
@@ -52,8 +57,6 @@
     _txtfield_dormain.alpha = 0;
     [self.view addSubview:_txtfield_dormain];
     
-    
-   
     _txtView_log.layer.borderWidth = 1.0f;
     _txtView_log.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
@@ -91,7 +94,7 @@
     }
     [_txtfield_dormain resignFirstResponder];
    
-     _txtfield_dormain.text = _apiArray[_checkCount] ; //@"www.baidu.com";
+     _txtfield_dormain.text = _apiArray[_checkCount] ;
     _netDiagnoService.dormain = _txtfield_dormain.text;
     if (!_isRunning) {
         [_indicatorView startAnimating];
@@ -143,9 +146,9 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         _isRunning = NO;
         _logInfo = [_logInfo stringByAppendingString:@"--------------"];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _txtView_log.text = _logInfo;
-        });
+       
+        _txtView_log.text = _logInfo;
+        
     });
     
     if (_checkCount == _apiArray.count ) {
@@ -198,17 +201,13 @@
     animation.autoreverses = YES;
     animation.duration = 3.0;
     animation.repeatCount = MAXFLOAT;
-    // animation.isRemovedOnCompletion = NO;    //.isRemovedOnCompletion = NO;
     animation.fillMode = kCAFillModeForwards;
-    [_startBtn.layer addAnimation:animation forKey:@"aAlpha"];//.add(animation, forKey: "aAlpha");
+    [_startBtn.layer addAnimation:animation forKey:@"aAlpha"];
 }
 
 -(void)remove_animation{
     [_startBtn.layer removeAllAnimations];
 }
-
-
-
 
 @end
 
