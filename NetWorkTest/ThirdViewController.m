@@ -42,9 +42,7 @@
     }
 }
 
--(void)delayMethod{
-    
-}
+ 
 - (IBAction)startDownloadTask2:(id)sender {
     NSString *urlStr2 = @"http://apitest.joyoung.com:8089/ia/upload1/2015/12/24/ios.zip";
     __weak typeof(self) weakSelf = self;
@@ -80,6 +78,7 @@
         _task2_progress.text = [NSString stringWithFormat:@"已下载： %.1f%%",task2Model.taskProgress*100];
         _task2_speed.text = [NSString stringWithFormat:@"下载速度：%@",task2Model.taskSpeed];
         _task2_size.text = [NSString stringWithFormat:@"任务大小：%@",task2Model.taskSize];
+       
     }
     
 }

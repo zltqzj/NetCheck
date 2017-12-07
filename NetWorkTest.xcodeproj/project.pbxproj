@@ -10,7 +10,6 @@
 		16774D421FD587B00065B5F5 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16774D411FD587B00065B5F5 /* ThirdViewController.m */; };
 		16774D4A1FD587FF0065B5F5 /* MXDownloadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16774D481FD587FF0065B5F5 /* MXDownloadModel.m */; };
 		16774D4B1FD587FF0065B5F5 /* MXDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 16774D491FD587FF0065B5F5 /* MXDownloadManager.m */; };
-		16774D571FD833BA0065B5F5 /* GetDeviceIPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 16774D561FD833BA0065B5F5 /* GetDeviceIPAddress.m */; };
 		16B8D6F51FD4DB6100AF0720 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D6F41FD4DB6100AF0720 /* AppDelegate.m */; };
 		16B8D6F81FD4DB6100AF0720 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D6F71FD4DB6100AF0720 /* ViewController.m */; };
 		16B8D6FB1FD4DB6100AF0720 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16B8D6F91FD4DB6100AF0720 /* Main.storyboard */; };
@@ -62,8 +61,6 @@
 		16774D481FD587FF0065B5F5 /* MXDownloadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXDownloadModel.m; sourceTree = "<group>"; };
 		16774D491FD587FF0065B5F5 /* MXDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXDownloadManager.m; sourceTree = "<group>"; };
 		16774D4C1FD58C2F0065B5F5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		16774D551FD833BA0065B5F5 /* GetDeviceIPAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetDeviceIPAddress.h; sourceTree = "<group>"; };
-		16774D561FD833BA0065B5F5 /* GetDeviceIPAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetDeviceIPAddress.m; sourceTree = "<group>"; };
 		16B8D6F01FD4DB6100AF0720 /* NetWorkTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetWorkTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16B8D6F31FD4DB6100AF0720 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		16B8D6F41FD4DB6100AF0720 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -155,15 +152,6 @@
 			path = MXDownload;
 			sourceTree = "<group>";
 		};
-		16774D541FD833BA0065B5F5 /* getIpAddress */ = {
-			isa = PBXGroup;
-			children = (
-				16774D551FD833BA0065B5F5 /* GetDeviceIPAddress.h */,
-				16774D561FD833BA0065B5F5 /* GetDeviceIPAddress.m */,
-			);
-			path = getIpAddress;
-			sourceTree = "<group>";
-		};
 		16B8D6E71FD4DB6100AF0720 = {
 			isa = PBXGroup;
 			children = (
@@ -189,7 +177,6 @@
 		16B8D6F21FD4DB6100AF0720 /* NetWorkTest */ = {
 			isa = PBXGroup;
 			children = (
-				16774D541FD833BA0065B5F5 /* getIpAddress */,
 				16B8D6F61FD4DB6100AF0720 /* ViewController.h */,
 				16B8D6F71FD4DB6100AF0720 /* ViewController.m */,
 				16B8D75E1FD5282300AF0720 /* STDDebugPingViewController.h */,
@@ -367,7 +354,7 @@
 				TargetAttributes = {
 					16B8D6EF1FD4DB6100AF0720 = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					16B8D7071FD4DB6100AF0720 = {
 						CreatedOnToolsVersion = 9.1;
@@ -492,7 +479,6 @@
 				16B8D7351FD4DB7500AF0720 /* LDNetTraceRoute.m in Sources */,
 				16B8D7361FD4DB7500AF0720 /* LDNetTimer.m in Sources */,
 				16B8D7381FD4DB7500AF0720 /* LDNetPing.m in Sources */,
-				16774D571FD833BA0065B5F5 /* GetDeviceIPAddress.m in Sources */,
 				16B8D7031FD4DB6100AF0720 /* main.m in Sources */,
 				16774D4B1FD587FF0065B5F5 /* MXDownloadManager.m in Sources */,
 				16B8D6F51FD4DB6100AF0720 /* AppDelegate.m in Sources */,
@@ -667,8 +653,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Boxfish Education Technology Co., Ltd.";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = X4AW54WQH8;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DN4X74J86T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NetWorkTest/LDNetDiagnoService",
@@ -677,9 +664,9 @@
 				INFOPLIST_FILE = NetWorkTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.boxfish.networkCheck;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zj.opencv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "boxfish network check";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -691,8 +678,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Boxfish Education Technology Co., Ltd.";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = X4AW54WQH8;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DN4X74J86T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NetWorkTest/LDNetDiagnoService",
@@ -701,9 +689,9 @@
 				INFOPLIST_FILE = NetWorkTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.boxfish.networkCheck;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zj.opencv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "boxfish network check";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

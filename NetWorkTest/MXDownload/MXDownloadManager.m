@@ -183,12 +183,8 @@ static MXDownloadManager *_dataCenter = nil;
                 NSTimeInterval time = [currentDate timeIntervalSinceDate:model.taskDate];
                 int64_t speed = (totalBytesWritten - model.bytesWritten) / time*1000;
                 model.taskSpeed = [NSString stringWithFormat:@"%@/s",[self formatByteCount:speed]];
-                
-                
                 model.bytesWritten = totalBytesWritten;
             }
-            
-            
             NSLog(@"task:%@  -- %@ , %@",model.taskName,progress,model.taskSpeed);
         }
     }
