@@ -13,13 +13,11 @@
 #import "FCFileManager.h"
 static const NSString* downloadUrl = @"";
 
-@interface ViewController () <LDNetDiagnoServiceDelegate, UITextFieldDelegate> {
-    UITextField *_txtfield_dormain;
-   
-    LDNetDiagnoService *_netDiagnoService;
-}
+@interface ViewController () <LDNetDiagnoServiceDelegate, UITextFieldDelegate>
 
-@property(strong,nonatomic)NSString* logInfo;
+@property(strong,nonatomic)   UITextField *txtfield_dormain;
+@property(strong,nonatomic) LDNetDiagnoService *netDiagnoService;
+@property(strong,nonatomic) NSString* logInfo;
 @property(strong,nonatomic) UIActivityIndicatorView* indicatorView;
 @property(weak,nonatomic) IBOutlet UIButton *startBtn;
 @property(weak,nonatomic) IBOutlet UITextView *txtView_log;
@@ -28,19 +26,17 @@ static const NSString* downloadUrl = @"";
 
 @property(strong,nonatomic) NSTimer* timer;
 @property(assign,nonatomic) BOOL isRunning;
-@property(strong,nonatomic) NSMutableArray* cdnArray;
+@property(strong,nonatomic) NSMutableArray* cdnArray;//cn  中国  us_west 美国西部  us_east 美国东部 sg 新加坡  au 澳大利亚 de 德国
 @property(assign,nonatomic) NSInteger cdnCheckCount;
-//cn  中国  us_west 美国西部  us_east 美国东部 sg 新加坡  au 澳大利亚 de 德国
+
 @end
 
 @implementation ViewController
 
 
 -(void)fileShow{
-    NSString * cachePath = [FCFileManager pathForCachesDirectory];
-    NSLog(@"%@",cachePath);
-    NSArray* filenames = [FCFileManager listFilesInDirectoryAtPath:cachePath];
-    NSLog(@"%@",filenames);
+    
+    NSArray* filenames = [FCFileManager listFilesInDirectoryAtPath:[FCFileManager pathForCachesDirectory]];
     
     [filenames enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString* filename = [NSString stringWithFormat:@"\n%lu:,%@\n",(unsigned long)idx,[[obj componentsSeparatedByString:@"/"] lastObject]];
@@ -52,21 +48,17 @@ static const NSString* downloadUrl = @"";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
- 
- 
- 
+    
     _apiArray = [NSMutableArray new];
     [_apiArray addObject:@"api.boxfish.cn"];
     [_apiArray addObject:@"storage.boxfish.cn"];
     _cdnArray = [[NSMutableArray alloc] initWithObjects:@"cn",@"us_west",@"us_east",@"sg",@"au",@"de", nil];
     
-    
     NSArray* filename = [FCFileManager listFilesInDirectoryAtPath:[FCFileManager pathForCachesDirectory]];
- 
+    
     [filename enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [FCFileManager removeItemAtPath:obj error:nil];
     }];
-    
     
     
     _indicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -79,7 +71,6 @@ static const NSString* downloadUrl = @"";
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:_indicatorView];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-
     [_startBtn addTarget:self action:@selector(startNetDiagnosis)forControlEvents:UIControlEventTouchUpInside];
     _startBtn.layer.cornerRadius = 40;
     _txtfield_dormain =
@@ -96,7 +87,7 @@ static const NSString* downloadUrl = @"";
     // Do any additional setup after loading the view, typically from a nib.
     _netDiagnoService = [[LDNetDiagnoService alloc] initWithAppCode:@"test"
                                                             appName:@"boxfish"
-                                                         appVersion:@"1.0.0"
+                                                         appVersion:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
                                                              userID:@"zhaojian@boxfish.cn"
                                                            deviceID:nil
                                                             dormain:_txtfield_dormain.text
@@ -112,8 +103,7 @@ static const NSString* downloadUrl = @"";
 }
 
 
-- (void)startNetDiagnosis
-{
+- (void)startNetDiagnosis{
     if (_apiCheckCount == 0) {
         _txtView_log.text = @"";
         _logInfo = @"";
@@ -125,8 +115,8 @@ static const NSString* downloadUrl = @"";
         return ;
     }
     [_txtfield_dormain resignFirstResponder];
-   
-     _txtfield_dormain.text = _apiArray[_apiCheckCount] ;
+    
+    _txtfield_dormain.text = _apiArray[_apiCheckCount] ;
     _netDiagnoService.dormain = _txtfield_dormain.text;
     if (!_isRunning) {
         [_indicatorView startAnimating];
@@ -144,34 +134,20 @@ static const NSString* downloadUrl = @"";
     }
 }
 
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 #pragma mark NetDiagnosisDelegate
-- (void)netDiagnosisDidStarted
-{
+- (void)netDiagnosisDidStarted{
     NSLog(@"Start～～～");
 }
 
-- (void)netDiagnosisStepInfo:(NSString *)stepInfo
-{
-//    NSLog(@"----------------%@", stepInfo);
+- (void)netDiagnosisStepInfo:(NSString *)stepInfo{
     _logInfo = [_logInfo stringByAppendingString:stepInfo];
     dispatch_async(dispatch_get_main_queue(), ^{
         _txtView_log.text = _logInfo;
     });
 }
 
-
-- (void)netDiagnosisDidEnd:(NSString *)allLogInfo;
-{
-     _apiCheckCount ++ ;
+- (void)netDiagnosisDidEnd:(NSString *)allLogInfo;{
+    _apiCheckCount ++ ;
     dispatch_async(dispatch_get_main_queue(), ^{
         _isRunning = NO;
         _logInfo = [_logInfo stringByAppendingString:@"--------------"];
@@ -190,7 +166,6 @@ static const NSString* downloadUrl = @"";
         });
     }
 }
-
 
 // 复制到剪切板
 - (void)copyToPasteboard{
@@ -217,7 +192,6 @@ static const NSString* downloadUrl = @"";
     [_startBtn.layer removeAllAnimations];
 }
 
-
 - (void)startDownloadTask2 {
     
     for (NSString* region in _cdnArray){
@@ -225,25 +199,25 @@ static const NSString* downloadUrl = @"";
         NSLog(@"urlStr2-----%@",urlStr2);
         __weak typeof(self) weakSelf = self;
         
-             [[MXDownloadManager sharedDataCenter] addDownloadTaskToList:urlStr2 taskName:region taskIdentifier:region];
-             [MXDownloadManager sharedDataCenter].myBlock = ^(NSString* str){
-                // NSLog(@"%@",str);
-                 if ([str isEqualToString:@"ok"]) {
-                     [weakSelf fileShow];
-                     dispatch_async(dispatch_get_main_queue(), ^(){
-                         weakSelf.txtView_log.text  = weakSelf.logInfo;
-                     });
-                     weakSelf.cdnCheckCount ++;
+        [[MXDownloadManager sharedDataCenter] addDownloadTaskToList:urlStr2 taskName:region taskIdentifier:region];
+        [MXDownloadManager sharedDataCenter].myBlock = ^(NSString* str){
+            // NSLog(@"%@",str);
+            if ([str isEqualToString:@"ok"]) {
+                [weakSelf fileShow];
+                dispatch_async(dispatch_get_main_queue(), ^(){
+                    weakSelf.txtView_log.text  = weakSelf.logInfo;
+                });
+                weakSelf.cdnCheckCount ++;
+                
+                if (weakSelf.cdnCheckCount == weakSelf.cdnArray.count) {
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [weakSelf allClear];
+                    });
                     
-                     if (weakSelf.cdnCheckCount == weakSelf.cdnArray.count) {
-                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                              [weakSelf allClear];
-                         });
-                       
-                     }
- 
-                 }
-             };
+                }
+                
+            }
+        };
         
         if (!_timer) {
             _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeCheckTaskStatus) userInfo:nil repeats:YES];
@@ -274,6 +248,10 @@ static const NSString* downloadUrl = @"";
     [self  copyToPasteboard];
     [self remove_animation];
     [self.startBtn setUserInteractionEnabled:TRUE];
+}
+
+- (void)didReceiveMemoryWarning{
+    [super didReceiveMemoryWarning];
 }
 @end
 
