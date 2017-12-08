@@ -122,10 +122,8 @@ static MXDownloadManager *_dataCenter = nil;
 //整个文件下载"完毕"的调用方法
 //location: 整个文件下载后存放位置 (沙盒)
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
-    if (_myBlock) {
-        _myBlock(@"ok");
-       
-    }
+    @synchronized(self) {
+    
     NSLog(@"线程:%@; 位置:%@", [NSThread currentThread], location);
     
     MXDownloadModel *currentTask = nil;
@@ -142,8 +140,12 @@ static MXDownloadManager *_dataCenter = nil;
     
     //将默认tmp目录下的文件移动到/Libary/Caches/
     NSString *cachesStr = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
-    
+     NSLog(@"目标1：%@",cachesStr);
+    NSLog(@"currentTask.taskName--%@",currentTask.taskName);
     NSString *filePath = [cachesStr stringByAppendingPathComponent:currentTask.taskName];
+         NSLog(@"目标2：%@",filePath);
+    NSLog(@"目标：%@",filePath);
+    NSLog(@"原来：%@",location.path);
     
     NSError *moveError = nil;
     
@@ -156,11 +158,15 @@ static MXDownloadManager *_dataCenter = nil;
     currentTask.taskSpeed = @"0kb/s";
     currentTask.isFinish = YES;
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 2秒后异步执行这里的代码...
-        NSLog(@"run-----");
-       [_taskList removeAllObjects];
+        if (_myBlock) {
+            _myBlock(@"ok");
+            
+        }
+     //  [_taskList removeAllObjects];
     });
+    }
 }
 
 

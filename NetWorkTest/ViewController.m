@@ -10,41 +10,72 @@
 #import "LDNetDiagnoService.h"
 #import "MBProgressHUD.h"
 #import "MXDownloadManager.h"
+#import "FCFileManager.h"
+static const NSString* downloadUrl = @"";
+
 @interface ViewController () <LDNetDiagnoServiceDelegate, UITextFieldDelegate> {
     UITextField *_txtfield_dormain;
-    NSString *_logInfo;
-    LDNetDiagnoService *_netDiagnoService;
    
+    LDNetDiagnoService *_netDiagnoService;
 }
 
+@property(strong,nonatomic)NSString* logInfo;
 @property(strong,nonatomic) UIActivityIndicatorView* indicatorView;
 @property(weak,nonatomic) IBOutlet UIButton *startBtn;
 @property(weak,nonatomic) IBOutlet UITextView *txtView_log;
 @property(strong,nonatomic) NSMutableArray* apiArray;
-@property(assign,nonatomic) NSInteger checkCount;
-@property (weak, nonatomic) IBOutlet UILabel *task2_progress;
+@property(assign,nonatomic) NSInteger apiCheckCount;
 
-@property (weak, nonatomic) IBOutlet UILabel *task2_speed;
-@property (weak, nonatomic) IBOutlet UILabel *task2_size;
 @property(strong,nonatomic) NSTimer* timer;
 @property(assign,nonatomic) BOOL isRunning;
+@property(strong,nonatomic) NSMutableArray* cdnArray;
+@property(assign,nonatomic) NSInteger cdnCheckCount;
+//cn  中国  us_west 美国西部  us_east 美国东部 sg 新加坡  au 澳大利亚 de 德国
 @end
 
 @implementation ViewController
+
+
+-(void)fileShow{
+    NSString * cachePath = [FCFileManager pathForCachesDirectory];
+    NSLog(@"%@",cachePath);
+    NSArray* filenames = [FCFileManager listFilesInDirectoryAtPath:cachePath];
+    NSLog(@"%@",filenames);
+    
+    [filenames enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString* filename = [NSString stringWithFormat:@"\n%lu:,%@\n",(unsigned long)idx,[[obj componentsSeparatedByString:@"/"] lastObject]];
+        _logInfo = [_logInfo stringByAppendingString:filename];
+    }];
+    _logInfo = [_logInfo stringByAppendingString:@"下载完成"];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
  
+ 
+ 
     _apiArray = [NSMutableArray new];
     [_apiArray addObject:@"api.boxfish.cn"];
     [_apiArray addObject:@"storage.boxfish.cn"];
+    _cdnArray = [[NSMutableArray alloc] initWithObjects:@"cn",@"us_west",@"us_east",@"sg",@"au",@"de", nil];
+    
+    
+    NSArray* filename = [FCFileManager listFilesInDirectoryAtPath:[FCFileManager pathForCachesDirectory]];
+ 
+    [filename enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [FCFileManager removeItemAtPath:obj error:nil];
+    }];
+    
+    
     
     _indicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     _indicatorView.frame = CGRectMake(0, 0, 30, 30);
     _indicatorView.hidden = NO;
     _indicatorView.hidesWhenStopped = YES;
     [_indicatorView stopAnimating];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"copy" style:UIBarButtonItemStylePlain target:self action:@selector(copyToPasteboard)];
+    
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:_indicatorView];
     self.navigationItem.rightBarButtonItem = rightItem;
     
@@ -83,19 +114,19 @@
 
 - (void)startNetDiagnosis
 {
-    if (_checkCount == 0) {
+    if (_apiCheckCount == 0) {
         _txtView_log.text = @"";
         _logInfo = @"";
         _startBtn.userInteractionEnabled = NO;
     }
     
-    if (_checkCount == _apiArray.count) {
+    if (_apiCheckCount == _apiArray.count) {
         _startBtn.userInteractionEnabled = YES;
         return ;
     }
     [_txtfield_dormain resignFirstResponder];
    
-     _txtfield_dormain.text = _apiArray[_checkCount] ;
+     _txtfield_dormain.text = _apiArray[_apiCheckCount] ;
     _netDiagnoService.dormain = _txtfield_dormain.text;
     if (!_isRunning) {
         [_indicatorView startAnimating];
@@ -140,14 +171,14 @@
 
 - (void)netDiagnosisDidEnd:(NSString *)allLogInfo;
 {
-     _checkCount ++ ;
+     _apiCheckCount ++ ;
     dispatch_async(dispatch_get_main_queue(), ^{
         _isRunning = NO;
         _logInfo = [_logInfo stringByAppendingString:@"--------------"];
         _txtView_log.text = _logInfo;
     });
     
-    if (_checkCount == _apiArray.count ) {
+    if (_apiCheckCount == _apiArray.count ) {
         //可以保存到文件，也可以通过邮件发送回来
         dispatch_async(dispatch_get_main_queue(), ^{
             [self startDownloadTask2];
@@ -164,13 +195,11 @@
 // 复制到剪切板
 - (void)copyToPasteboard{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"tips" message:@"It has been copied to the clipboard" preferredStyle:UIAlertControllerStyleAlert];
-    
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:nil];
-    
     [alertController addAction:okAction];
     [self presentViewController:alertController animated:YES completion:nil];
-        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-        pasteboard.string = _txtView_log.text;
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = _txtView_log.text;
 }
 
 -(void)add_animation{
@@ -191,37 +220,35 @@
 
 - (void)startDownloadTask2 {
     
-    NSString *urlStr2 = @"http://apitest.joyoung.com:8089/ia/upload1/2015/12/24/ios.zip";
-    __weak typeof(self) weakSelf = self;
-    
-    [[MXDownloadManager sharedDataCenter] addDownloadTaskToList:urlStr2 taskName:@"task_two" taskIdentifier:@"task_second"];
-    [MXDownloadManager sharedDataCenter].myBlock = ^(NSString* str){
-        NSLog(@"%@",str);
-        if ([str isEqualToString:@"ok"]) {
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                weakSelf.txtView_log.text  = [weakSelf.txtView_log.text stringByAppendingString:@"下载完成"];
-                // 2秒后异步执行这里的代码...
-                NSLog(@"run-----");
-                [weakSelf.timer invalidate];
-                weakSelf.timer = nil;
-               
-                [weakSelf.indicatorView stopAnimating];
-                [weakSelf.startBtn setTitle:@"Start" forState:UIControlStateNormal];
-                weakSelf.isRunning = NO;
-                weakSelf.checkCount = 0;
-                [weakSelf  copyToPasteboard];
-                [weakSelf remove_animation];
-                [weakSelf.startBtn setUserInteractionEnabled:TRUE];
-
-            });
-            
-            
+    for (NSString* region in _cdnArray){
+        NSString *urlStr2 = [NSString stringWithFormat:@"%@%@",@"http://api.boxfish.cn/data/7729ea6237db7d8d03df36875c1263b7?server=",region];
+        NSLog(@"urlStr2-----%@",urlStr2);
+        __weak typeof(self) weakSelf = self;
+        
+             [[MXDownloadManager sharedDataCenter] addDownloadTaskToList:urlStr2 taskName:region taskIdentifier:region];
+             [MXDownloadManager sharedDataCenter].myBlock = ^(NSString* str){
+                // NSLog(@"%@",str);
+                 if ([str isEqualToString:@"ok"]) {
+                     [weakSelf fileShow];
+                     dispatch_async(dispatch_get_main_queue(), ^(){
+                         weakSelf.txtView_log.text  = weakSelf.logInfo;
+                     });
+                     weakSelf.cdnCheckCount ++;
+                    
+                     if (weakSelf.cdnCheckCount == weakSelf.cdnArray.count) {
+                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                              [weakSelf allClear];
+                         });
+                       
+                     }
+ 
+                 }
+             };
+        
+        if (!_timer) {
+            _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeCheckTaskStatus) userInfo:nil repeats:YES];
+            [_timer fire];
         }
-    };
-    if (!_timer) {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeCheckTaskStatus) userInfo:nil repeats:YES];
-        [_timer fire];
     }
 }
 
@@ -229,14 +256,24 @@
 - (void)timeCheckTaskStatus{
     MXDownloadModel *task2Model = [[MXDownloadManager sharedDataCenter] askForTaskStatusWithTaskIdentifier:@"task_second"];
     if (task2Model) {
-        _task2_progress.text = [NSString stringWithFormat:@"已下载： %.1f%%",task2Model.taskProgress*100];
-        _task2_speed.text = [NSString stringWithFormat:@"下载速度：%@",task2Model.taskSpeed];
-        _task2_size.text = [NSString stringWithFormat:@"任务大小：%@",task2Model.taskSize];
-
-        _txtView_log.text  = [_txtView_log.text stringByAppendingString:[NSString stringWithFormat:@"\n下载速度：%@\n",task2Model.taskSpeed]];
+        _logInfo = [_logInfo stringByAppendingString:[NSString stringWithFormat:@"\nspeed:%@,已下载：%.1f%%",task2Model.taskSpeed,task2Model.taskProgress*100]];
+        _txtView_log.text  =  _logInfo;
     }
-    
 }
 
+
+-(void)allClear{
+    NSLog(@"end-----");
+    [self.timer invalidate];
+    self.timer = nil;
+    [self.indicatorView stopAnimating];
+    [self.startBtn setTitle:@"Start" forState:UIControlStateNormal];
+    self.isRunning = NO;
+    self.apiCheckCount = 0;
+    self.cdnCheckCount = 0;
+    [self  copyToPasteboard];
+    [self remove_animation];
+    [self.startBtn setUserInteractionEnabled:TRUE];
+}
 @end
 

@@ -32,6 +32,7 @@
 		16B8D75C1FD5225300AF0720 /* STDPingServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D7541FD5225300AF0720 /* STDPingServices.m */; };
 		16B8D75D1FD5225300AF0720 /* STSimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D7571FD5225300AF0720 /* STSimplePing.m */; };
 		16B8D7601FD5282400AF0720 /* STDDebugPingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D75F1FD5282400AF0720 /* STDDebugPingViewController.m */; };
+		16C4BF2D1FDA67650014FAA4 /* FCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C4BF2C1FDA67650014FAA4 /* FCFileManager.m */; };
 		B74E3911311C2F8E096664C9 /* libPods-NetWorkTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CDE3D0AA92C58E80CA273C /* libPods-NetWorkTest.a */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,8 @@
 		16B8D7581FD5225300AF0720 /* STSimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSimplePing.h; sourceTree = "<group>"; };
 		16B8D75E1FD5282300AF0720 /* STDDebugPingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STDDebugPingViewController.h; sourceTree = "<group>"; };
 		16B8D75F1FD5282400AF0720 /* STDDebugPingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STDDebugPingViewController.m; sourceTree = "<group>"; };
+		16C4BF2B1FDA67650014FAA4 /* FCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCFileManager.h; sourceTree = "<group>"; };
+		16C4BF2C1FDA67650014FAA4 /* FCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCFileManager.m; sourceTree = "<group>"; };
 		41CDE3D0AA92C58E80CA273C /* libPods-NetWorkTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NetWorkTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FD72F5786DACD0FE3F8C6D7 /* Pods-NetWorkTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetWorkTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetWorkTest/Pods-NetWorkTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +186,7 @@
 				16B8D75F1FD5282400AF0720 /* STDDebugPingViewController.m */,
 				16774D401FD587B00065B5F5 /* ThirdViewController.h */,
 				16774D411FD587B00065B5F5 /* ThirdViewController.m */,
+				16C4BF2A1FDA67650014FAA4 /* fileManager */,
 				16774D451FD587FF0065B5F5 /* MXDownload */,
 				16B8D7501FD5225300AF0720 /* ping */,
 				16B8D7251FD4DB7500AF0720 /* LDNetDiagnoService */,
@@ -275,6 +279,15 @@
 			path = PingTester;
 			sourceTree = "<group>";
 		};
+		16C4BF2A1FDA67650014FAA4 /* fileManager */ = {
+			isa = PBXGroup;
+			children = (
+				16C4BF2B1FDA67650014FAA4 /* FCFileManager.h */,
+				16C4BF2C1FDA67650014FAA4 /* FCFileManager.m */,
+			);
+			path = fileManager;
+			sourceTree = "<group>";
+		};
 		CE0DC5F4FC8D249C77687B45 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,7 +367,7 @@
 				TargetAttributes = {
 					16B8D6EF1FD4DB6100AF0720 = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					16B8D7071FD4DB6100AF0720 = {
 						CreatedOnToolsVersion = 9.1;
@@ -481,6 +494,7 @@
 				16B8D7381FD4DB7500AF0720 /* LDNetPing.m in Sources */,
 				16B8D7031FD4DB6100AF0720 /* main.m in Sources */,
 				16774D4B1FD587FF0065B5F5 /* MXDownloadManager.m in Sources */,
+				16C4BF2D1FDA67650014FAA4 /* FCFileManager.m in Sources */,
 				16B8D6F51FD4DB6100AF0720 /* AppDelegate.m in Sources */,
 				16774D4A1FD587FF0065B5F5 /* MXDownloadModel.m in Sources */,
 				16B8D75C1FD5225300AF0720 /* STDPingServices.m in Sources */,
@@ -653,9 +667,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Boxfish Education Technology Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DN4X74J86T;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Boxfish Education Technology Co., Ltd.";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = X4AW54WQH8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NetWorkTest/LDNetDiagnoService",
@@ -664,9 +678,9 @@
 				INFOPLIST_FILE = NetWorkTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zj.opencv;
+				PRODUCT_BUNDLE_IDENTIFIER = com.boxfish.networkCheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "boxfish network check";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -678,9 +692,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Boxfish Education Technology Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DN4X74J86T;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Boxfish Education Technology Co., Ltd.";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = X4AW54WQH8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NetWorkTest/LDNetDiagnoService",
@@ -689,9 +703,9 @@
 				INFOPLIST_FILE = NetWorkTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zj.opencv;
+				PRODUCT_BUNDLE_IDENTIFIER = com.boxfish.networkCheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "boxfish network check";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

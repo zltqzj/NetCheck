@@ -259,11 +259,11 @@ static NSString *const kCheckOutIPURL = @"http://nstool.netease.com/info.js";
                                                           [typeArr objectAtIndex:_curNetType - 1]]];
         }
     }
-//    NSError *error;
-//    NSURL *ipURL = [NSURL URLWithString:@"http://ip.chinaz.com/getip.aspx"];
-//    NSString *ip = [NSString stringWithContentsOfURL:ipURL encoding:NSUTF8StringEncoding error:&error];
-//    
-//     [self recordStepInfo:[NSString stringWithFormat:@"网络IP:%@",ip]];
+    NSError *error;
+    NSURL *ipURL = [NSURL URLWithString:@"http://ip.chinaz.com/getip.aspx"];
+    NSString *ip = [NSString stringWithContentsOfURL:ipURL encoding:NSUTF8StringEncoding error:&error];
+    
+     [self recordStepInfo:[NSString stringWithFormat:@"网络IP:%@",ip]];
     //本地ip信息
     _localIp = [LDNetGetAddress deviceIPAdress];
     [self recordStepInfo:[NSString stringWithFormat:@"当前本机IP: %@", _localIp]];
@@ -390,7 +390,7 @@ static NSString *const kCheckOutIPURL = @"http://nstool.netease.com/info.js";
 - (void)traceRouteDidEnd
 {
     _isRunning = NO;
-    [self recordStepInfo:@"\n网络诊断结束\n"];
+    [self recordStepInfo:[NSString stringWithFormat:@"\n网络诊断%@结束\n",_dormain]];
     if (self.delegate && [self.delegate respondsToSelector:@selector(netDiagnosisDidEnd:)]) {
         [self.delegate netDiagnosisDidEnd:_logInfo];
     }
