@@ -9,9 +9,9 @@
 #import "ViewController.h"
 #import "LDNetDiagnoService.h"
 #import "MBProgressHUD.h"
-#import "MXDownloadManager.h"
 #import "FCFileManager.h"
-static const NSString* downloadUrl = @"";
+#import "AFNetworking.h"
+static const NSString* downloadUrl = @"http://api.boxfish.cn/data/7729ea6237db7d8d03df36875c1263b7?server=";
 
 @interface ViewController () <LDNetDiagnoServiceDelegate, UITextFieldDelegate>
 
@@ -45,6 +45,61 @@ static const NSString* downloadUrl = @"";
     _logInfo = [_logInfo stringByAppendingString:@"下载完成"];
 }
 
+-(void)downLoadFile{
+    _cdnCheckCount = 0;
+    for (NSString* region in _cdnArray){
+      
+    __weak typeof(self) weakSelf = self;
+    NSDate *startTime = [NSDate date];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",downloadUrl,region]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    NSURLSessionDownloadTask *downloadTask  = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+       dispatch_async(dispatch_get_main_queue(), ^{
+        weakSelf.logInfo = [weakSelf.logInfo stringByAppendingString:[NSString stringWithFormat:@"\n节点：%@:,速度：%@,进度：%lf\n",region,[weakSelf downloadSpeed:startTime completedUnitCount:downloadProgress.completedUnitCount], 1.0 *downloadProgress.completedUnitCount / downloadProgress.totalUnitCount]];
+       
+            weakSelf.txtView_log.text = weakSelf.logInfo;
+        });
+        
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
+
+        NSString *str1 =  [NSString stringWithFormat:@"\n(%@--节点下载完成)\n",region];
+        NSDictionary *dictAttr1 = @{NSForegroundColorAttributeName:[UIColor redColor]};
+        NSAttributedString *attr1 = [[NSAttributedString alloc] initWithString:str1
+                                                                    attributes:dictAttr1];
+        [attributedString appendAttributedString:attr1];
+        weakSelf.logInfo = [weakSelf.logInfo stringByAppendingString:str1];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.txtView_log.text = weakSelf.logInfo;
+        });
+        weakSelf.cdnCheckCount ++ ;
+        NSLog(@"---------%ld",(long)weakSelf.cdnCheckCount);
+        if (weakSelf.cdnCheckCount == weakSelf.cdnArray.count) {
+             [weakSelf allClear];
+        }
+       
+       
+        return [documentsDirectoryURL URLByAppendingPathComponent:region];
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+
+        if (error != nil) {
+              weakSelf.cdnCheckCount ++ ;
+            NSLog(@"%@节点下载失败，错误：%@",region,error);
+        }
+        
+    }];
+      
+    [downloadTask resume];
+    }
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -54,11 +109,14 @@ static const NSString* downloadUrl = @"";
     [_apiArray addObject:@"storage.boxfish.cn"];
     _cdnArray = [[NSMutableArray alloc] initWithObjects:@"cn",@"us_west",@"us_east",@"sg",@"au",@"de", nil];
     
-    NSArray* filename = [FCFileManager listFilesInDirectoryAtPath:[FCFileManager pathForCachesDirectory]];
+    NSArray* filename = [FCFileManager listFilesInDirectoryAtPath:[FCFileManager pathForDocumentsDirectory]];
     
     [filename enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [FCFileManager removeItemAtPath:obj error:nil];
     }];
+    
+//    [self downLoadFile];
+
     
     
     _indicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -99,7 +157,6 @@ static const NSString* downloadUrl = @"";
     _isRunning = NO;
     _txtView_log.text = @"";
     _logInfo = @"";
-    
 }
 
 
@@ -150,14 +207,14 @@ static const NSString* downloadUrl = @"";
     _apiCheckCount ++ ;
     dispatch_async(dispatch_get_main_queue(), ^{
         _isRunning = NO;
-        _logInfo = [_logInfo stringByAppendingString:@"--------------"];
+        _logInfo = [_logInfo stringByAppendingString:@"--------------\n"];
         _txtView_log.text = _logInfo;
     });
     
     if (_apiCheckCount == _apiArray.count ) {
         //可以保存到文件，也可以通过邮件发送回来
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self startDownloadTask2];
+            [self downLoadFile];
         });
     }
     else{
@@ -192,51 +249,10 @@ static const NSString* downloadUrl = @"";
     [_startBtn.layer removeAllAnimations];
 }
 
-- (void)startDownloadTask2 {
-    
-    for (NSString* region in _cdnArray){
-        NSString *urlStr2 = [NSString stringWithFormat:@"%@%@",@"http://api.boxfish.cn/data/7729ea6237db7d8d03df36875c1263b7?server=",region];
-        NSLog(@"urlStr2-----%@",urlStr2);
-        __weak typeof(self) weakSelf = self;
-        
-        [[MXDownloadManager sharedDataCenter] addDownloadTaskToList:urlStr2 taskName:region taskIdentifier:region];
-        [MXDownloadManager sharedDataCenter].myBlock = ^(NSString* str){
-            // NSLog(@"%@",str);
-            if ([str isEqualToString:@"ok"]) {
-                [weakSelf fileShow];
-                dispatch_async(dispatch_get_main_queue(), ^(){
-                    weakSelf.txtView_log.text  = weakSelf.logInfo;
-                });
-                weakSelf.cdnCheckCount ++;
-                
-                if (weakSelf.cdnCheckCount == weakSelf.cdnArray.count) {
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [weakSelf allClear];
-                    });
-                    
-                }
-                
-            }
-        };
-        
-        if (!_timer) {
-            _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeCheckTaskStatus) userInfo:nil repeats:YES];
-            [_timer fire];
-        }
-    }
-}
-
-
-- (void)timeCheckTaskStatus{
-    MXDownloadModel *task2Model = [[MXDownloadManager sharedDataCenter] askForTaskStatusWithTaskIdentifier:@"task_second"];
-    if (task2Model) {
-        _logInfo = [_logInfo stringByAppendingString:[NSString stringWithFormat:@"\nspeed:%@,已下载：%.1f%%",task2Model.taskSpeed,task2Model.taskProgress*100]];
-        _txtView_log.text  =  _logInfo;
-    }
-}
 
 
 -(void)allClear{
+      dispatch_async(dispatch_get_main_queue(), ^{
     NSLog(@"end-----");
     [self.timer invalidate];
     self.timer = nil;
@@ -248,6 +264,21 @@ static const NSString* downloadUrl = @"";
     [self  copyToPasteboard];
     [self remove_animation];
     [self.startBtn setUserInteractionEnabled:TRUE];
+           });
+}
+
+
+- (NSString *)downloadSpeed:(NSDate *)startTime completedUnitCount:(int64_t)unitCount{
+    NSTimeInterval startSeconds = [startTime timeIntervalSince1970];
+    NSDate *now = [NSDate date];
+    NSTimeInterval nowSeconds = [now timeIntervalSince1970];
+    NSTimeInterval seconds = nowSeconds - startSeconds + 1;
+    CGFloat speed = unitCount / seconds / 1000;
+    if (speed < 1000) {
+        return [NSString stringWithFormat:@"%.2f  kb/s",speed];
+    } else {
+        return [NSString stringWithFormat:@"%.1f m/s",speed / 1000];
+    }
 }
 
 - (void)didReceiveMemoryWarning{

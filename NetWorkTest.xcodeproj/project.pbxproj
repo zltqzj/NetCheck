@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		16774D4A1FD587FF0065B5F5 /* MXDownloadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16774D481FD587FF0065B5F5 /* MXDownloadModel.m */; };
-		16774D4B1FD587FF0065B5F5 /* MXDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 16774D491FD587FF0065B5F5 /* MXDownloadManager.m */; };
 		16B8D6F51FD4DB6100AF0720 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D6F41FD4DB6100AF0720 /* AppDelegate.m */; };
 		16B8D6F81FD4DB6100AF0720 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8D6F71FD4DB6100AF0720 /* ViewController.m */; };
 		16B8D6FB1FD4DB6100AF0720 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16B8D6F91FD4DB6100AF0720 /* Main.storyboard */; };
@@ -54,10 +52,6 @@
 
 /* Begin PBXFileReference section */
 		021D1F8DD54DDE8A82019594 /* Pods-NetWorkTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetWorkTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetWorkTest/Pods-NetWorkTest.debug.xcconfig"; sourceTree = "<group>"; };
-		16774D461FD587FF0065B5F5 /* MXDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXDownloadManager.h; sourceTree = "<group>"; };
-		16774D471FD587FF0065B5F5 /* MXDownloadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXDownloadModel.h; sourceTree = "<group>"; };
-		16774D481FD587FF0065B5F5 /* MXDownloadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXDownloadModel.m; sourceTree = "<group>"; };
-		16774D491FD587FF0065B5F5 /* MXDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXDownloadManager.m; sourceTree = "<group>"; };
 		16774D4C1FD58C2F0065B5F5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		16B8D6F01FD4DB6100AF0720 /* NetWorkTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetWorkTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16B8D6F31FD4DB6100AF0720 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -141,17 +135,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		16774D451FD587FF0065B5F5 /* MXDownload */ = {
-			isa = PBXGroup;
-			children = (
-				16774D461FD587FF0065B5F5 /* MXDownloadManager.h */,
-				16774D491FD587FF0065B5F5 /* MXDownloadManager.m */,
-				16774D471FD587FF0065B5F5 /* MXDownloadModel.h */,
-				16774D481FD587FF0065B5F5 /* MXDownloadModel.m */,
-			);
-			path = MXDownload;
-			sourceTree = "<group>";
-		};
 		16B8D6E71FD4DB6100AF0720 = {
 			isa = PBXGroup;
 			children = (
@@ -182,7 +165,6 @@
 				16B8D75E1FD5282300AF0720 /* STDDebugPingViewController.h */,
 				16B8D75F1FD5282400AF0720 /* STDDebugPingViewController.m */,
 				16C4BF2A1FDA67650014FAA4 /* fileManager */,
-				16774D451FD587FF0065B5F5 /* MXDownload */,
 				16B8D7501FD5225300AF0720 /* ping */,
 				16B8D7251FD4DB7500AF0720 /* LDNetDiagnoService */,
 				16B8D6F31FD4DB6100AF0720 /* AppDelegate.h */,
@@ -488,10 +470,8 @@
 				16B8D7361FD4DB7500AF0720 /* LDNetTimer.m in Sources */,
 				16B8D7381FD4DB7500AF0720 /* LDNetPing.m in Sources */,
 				16B8D7031FD4DB6100AF0720 /* main.m in Sources */,
-				16774D4B1FD587FF0065B5F5 /* MXDownloadManager.m in Sources */,
 				16C4BF2D1FDA67650014FAA4 /* FCFileManager.m in Sources */,
 				16B8D6F51FD4DB6100AF0720 /* AppDelegate.m in Sources */,
-				16774D4A1FD587FF0065B5F5 /* MXDownloadModel.m in Sources */,
 				16B8D75C1FD5225300AF0720 /* STDPingServices.m in Sources */,
 				16B8D7371FD4DB7500AF0720 /* LDSimplePing.m in Sources */,
 				16B8D73B1FD4DB7500AF0720 /* LDNetConnect.m in Sources */,
