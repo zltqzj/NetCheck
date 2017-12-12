@@ -114,11 +114,7 @@ static const NSString* downloadUrl = @"http://api.boxfish.cn/data/7729ea6237db7d
     [filename enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [FCFileManager removeItemAtPath:obj error:nil];
     }];
-    
-//    [self downLoadFile];
 
-    
-    
     _indicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     _indicatorView.frame = CGRectMake(0, 0, 30, 30);
     _indicatorView.hidden = NO;
@@ -249,22 +245,20 @@ static const NSString* downloadUrl = @"http://api.boxfish.cn/data/7729ea6237db7d
     [_startBtn.layer removeAllAnimations];
 }
 
-
-
 -(void)allClear{
-      dispatch_async(dispatch_get_main_queue(), ^{
-    NSLog(@"end-----");
-    [self.timer invalidate];
-    self.timer = nil;
-    [self.indicatorView stopAnimating];
-    [self.startBtn setTitle:@"Start" forState:UIControlStateNormal];
-    self.isRunning = NO;
-    self.apiCheckCount = 0;
-    self.cdnCheckCount = 0;
-    [self  copyToPasteboard];
-    [self remove_animation];
-    [self.startBtn setUserInteractionEnabled:TRUE];
-           });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"end-----");
+        [self.timer invalidate];
+        self.timer = nil;
+        [self.indicatorView stopAnimating];
+        [self.startBtn setTitle:@"Start" forState:UIControlStateNormal];
+        self.isRunning = NO;
+        self.apiCheckCount = 0;
+        self.cdnCheckCount = 0;
+        [self  copyToPasteboard];
+        [self remove_animation];
+        [self.startBtn setUserInteractionEnabled:TRUE];
+    });
 }
 
 
