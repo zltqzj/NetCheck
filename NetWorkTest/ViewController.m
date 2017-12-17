@@ -92,6 +92,9 @@ static const NSString* downloadUrl = @"http://api.boxfish.cn/data/7729ea6237db7d
               weakSelf.cdnCheckCount ++ ;
             NSLog(@"%@节点下载失败，错误：%@",region,error);
         }
+        if (weakSelf.cdnCheckCount == weakSelf.cdnArray.count) {
+            [weakSelf allClear];
+        }
         
     }];
       
